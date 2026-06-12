@@ -1,0 +1,11 @@
+print(5+2)
+print(22-8)
+print(771*995)
+print(332453675/5)
+print(567%6)
+print(9989//8)
+print(888**543)
+print(5678//8)
+print(6709%7)
+print(34562**897)
+

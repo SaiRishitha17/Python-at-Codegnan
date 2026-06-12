@@ -1,0 +1,10 @@
+a,b=20,2
+print(a<<b)
+a,b=2,40
+print(a>>b)
+a,b=35,70
+print(a&b)
+a,b=24,48
+print(a|b)
+a,b=20,5
+print(a^b)
