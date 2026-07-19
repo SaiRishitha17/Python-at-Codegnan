@@ -1,0 +1,2 @@
+Welcome to Python File Handling!
+This file was created using Exception Handling.
