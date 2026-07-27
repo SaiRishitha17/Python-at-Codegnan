@@ -1,4 +1,4 @@
-from file_handling import append_data
+from file_handling import append_data, read_data, write_data
 class Vehicle:
     def __init__(self, vehicle_id, brand, model, rental_price, availability):
         self.vehicle_id = vehicle_id
@@ -54,7 +54,7 @@ def add_vehicle():
 
     # Taking vehicle details from admin
     vehicle_id = input("Enter Vehicle ID: ")
-    vehicle_type = input("Enter Vehicle Type (Car/Bike/Truck): ")
+    vehicle_type = input("Enter Vehicle Type (Car/Bike/Truck): ").capitalize()
     brand = input("Enter Brand: ")
     model = input("Enter Model: ")
     rental_price = int(input("Enter Rental Price: "))
@@ -112,3 +112,105 @@ def add_vehicle():
     append_data("vehicles.csv", vehicle_data)
 
     print("Vehicle added successfully")
+
+# Function to display all vehicles
+def view_vehicles():
+
+    # Read all vehicle records from vehicles.csv
+    vehicles = read_data("vehicles.csv")
+
+    # If there are no vehicles
+    if not vehicles:
+        print("No vehicles available.")
+        return
+
+    print("\n------ Vehicle List ------")
+
+    # Display each vehicle
+    for vehicle in vehicles:
+        print("Vehicle ID:", vehicle["vehicle_id"])
+        print("Vehicle Type:", vehicle["vehicle_type"])
+        print("Brand:", vehicle["brand"])
+        print("Model:", vehicle["model"])
+        print("Rental Price:", vehicle["rental_price"])
+        print("Availability:", vehicle["availability"])
+        print("--------------------------")
+# Function to search a vehicle by vehicle ID
+def search_vehicle():
+
+    vehicle_id = input("Enter Vehicle ID to search: ")
+
+    vehicles = read_data("vehicles.csv")
+
+    for vehicle in vehicles:
+
+        if vehicle["vehicle_id"] == vehicle_id:
+
+            print("\nVehicle Found")
+            print("Vehicle ID:", vehicle["vehicle_id"])
+            print("Vehicle Type:", vehicle["vehicle_type"])
+            print("Brand:", vehicle["brand"])
+            print("Model:", vehicle["model"])
+            print("Rental Price:", vehicle["rental_price"])
+            print("Availability:", vehicle["availability"])
+            return
+
+    print("Vehicle not found")
+
+# Function to update vehicle details
+def update_vehicle():
+
+    vehicle_id = input("Enter Vehicle ID to update: ")
+
+    vehicles = read_data("vehicles.csv")
+
+    for vehicle in vehicles:
+
+        if vehicle["vehicle_id"] == vehicle_id:
+
+            print("Vehicle found")
+
+            vehicle["brand"] = input("Enter New Brand: ")
+            vehicle["model"] = input("Enter New Model: ")
+            vehicle["rental_price"] = input("Enter New Rental Price: ")
+            vehicle["availability"] = input("Enter Availability: ")
+
+            write_data(
+                "vehicles.csv",
+                vehicles,
+                vehicles[0].keys()
+            )
+
+            print("Vehicle updated successfully")
+            return
+
+    print("Vehicle not found")
+
+
+# Function to delete a vehicle
+def delete_vehicle():
+
+    vehicle_id = input("Enter Vehicle ID to delete: ")
+
+    vehicles = read_data("vehicles.csv")
+
+    updated_vehicles = []
+
+    for vehicle in vehicles:
+
+        if vehicle["vehicle_id"] != vehicle_id:
+            updated_vehicles.append(vehicle)
+
+    if len(updated_vehicles) == len(vehicles):
+
+        print("Vehicle not found")
+
+    else:
+
+        write_data(
+            "vehicles.csv",
+            updated_vehicles,
+            updated_vehicles[0].keys()
+        )
+
+        print("Vehicle deleted successfully")

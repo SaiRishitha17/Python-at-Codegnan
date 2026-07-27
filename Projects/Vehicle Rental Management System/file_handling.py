@@ -21,9 +21,16 @@ def write_data(filename, data, fieldnames):
 
 # Add new record to CSV file
 def append_data(filename, record):
+
     with open(filename, "a", newline="") as file:
+
         writer = csv.DictWriter(
             file,
             fieldnames=record.keys()
         )
+
+        # Write header only when file is empty
+        if file.tell() == 0:
+            writer.writeheader()
+
         writer.writerow(record)

@@ -1,0 +1,11 @@
+vehicle_id,vehicle_type,brand,model,rental_price,availability
+c101,Car,fortuner,eco,1000,Available
+c102,Car,Toyota,Camry,2000,Available
+c103,Car,Hyundai,Creta,2200,Available
+c104,Car,Maruti,Baleno,1500,Available
+c105,Car,Tata,Nexon,1900,Available
+b101,Bike,Yamaha,R15,800,Available
+b102,Bike,Royal Enfield,Classic 350,1000,Available
+b103,Bike,Honda,Activa,600,Available
+t101,Truck,Tata,Ultra,3000,Available
+t102,Truck,Ashok Leyland,Dost,3500,Available
